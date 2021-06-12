@@ -11,8 +11,8 @@
                 <div class="col-sm-12">
                     <h4 class="pull-left page-title">Welcome !</h4>
                     <ol class="breadcrumb pull-right">
-                        <li><a href="#">Enventory</a></li>
-                        <li class="active">Today Attendence</li>
+                        <li><a href="#">Inventory</a></li>
+                        <li class="active">Attendence</li>
                     </ol>
                 </div>
             </div>
@@ -23,7 +23,7 @@
                 <div class="col-md-12">
                                 <div class="panel panel-default">
                                     <div class="panel-heading bg-info">
-                                        <h3 class="panel-title">Take Attendence <span st>{{date('d-m-y')}}</span>
+                                        <h3 class="panel-title">View Attendence 
                                             <a href="{{route('all.attendence')}}" class="btn btn-success pull-right"> <i class="fas fa-plus-square"></i> All Attendence</a>
                                         </h3>
                                         
@@ -33,7 +33,7 @@
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                            <form method="post" action="{{url('/insert-attendence')}}">
+                                            <form method="post" action="{{url('/update-attendence')}}">
                                             @csrf
                                                 <table {{--id="datatable"--}} class="table table-striped table-bordered">
                                                     <thead>
@@ -51,26 +51,27 @@
                                                         @php
                                                             $i = 1;
                                                         @endphp
-                                                        @foreach ($employee as $row)
+                                                        @foreach ($data as $row)
                                                         <tr>
                                                             <td>{{ $i++ }}</td>
                                                             <td>{{ $row->name }}</td>
                                                             <td> <img src="{{ asset($row->photo) }}" alt="" width="50px" height="50px"> 
-                                                            <input type="hidden" name="user_id[]" value="{{$row->id}}">
+                                                            <input type="hidden" name="id[]" value="{{$row->id}}">
                                                             </td>
                                                             <td>
                                                                 <div class="checkbox checkbox-success checkbox-inline">
-                                            <input type="radio" name="attendence[{{$row->id}}]" value="Present">
+                                            <input type="radio" name="attendence[{{$row->id}}]" value="Present" disabled="" <?php if($row->attendence == 'Present'){
+                                                echo 'Checked';
+                                            } ?>>
                                              Present
                                         </div>
                                         <div class="checkbox checkbox-danger checkbox-inline">
-                                            <input type="radio" name="attendence[{{$row->id}}]" value="Absent" >
+                                            <input type="radio" name="attendence[{{$row->id}}]" value="Absent" disabled="" <?php if($row->attendence == 'Absent'){
+                                                echo 'Checked';
+                                            } ?>>
                                              Absent
                                         </div>
                                                             </td>
-                                                            <input type="hidden" name="att_date" value="{{ date('d-m-y') }}">
-                                                            <input type="hidden" name="att_year" value="{{ date('Y') }}">
-                                                            <input type="hidden" name="month" value="{{ date('F') }}">
                                                             
                                                             
                                                             
@@ -81,7 +82,7 @@
                                                     </tbody>
                                                     
                                                 </table>
-                                                    <button type="submit" class="btn btn-success">Take Attendence</button>
+                                                    
                                                     </form>
                                             </div>
                                         </div>

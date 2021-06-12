@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Session;
 use App\Category;
 use App\Product;
+use App\Exports\ProductsExport;
+use App\Imports\ProductsImport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use Image;
 use DB;
@@ -150,5 +153,23 @@ class ProductController extends Controller
 
 
 
+    }
+
+
+    public function ImportProduct(){
+        return view('import_product');
+    }
+
+    public function export() 
+    {
+        return Excel::download(new ProductsExport, 'products.xlsx');
+    }
+
+
+    public function import(Request $request){
+        $import = Excel::import(new ProductsImport, $request->file('import_file'));
+
+        Session::flash('success','Product Imported successfully!!');
+        return redirect()->route('all-product');
     }
 }

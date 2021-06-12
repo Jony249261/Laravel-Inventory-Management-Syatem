@@ -63,7 +63,7 @@ class CustomerController extends Controller
 
         
         Session()->flash('success', 'Customer Inserted Successfully!.');
-        return redirect()->route('all-customer');
+        return redirect()->back();
      
         
     }

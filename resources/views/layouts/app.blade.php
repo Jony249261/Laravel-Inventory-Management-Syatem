@@ -190,8 +190,11 @@
                     <!--- Divider -->
                     <div id="sidebar-menu">
                         <ul>
+                        <li>
+                                <a href="{{route('home') }}"><i class="md md-home"></i><span> Dashboard </span></a>
+                            </li>
                             <li>
-                                <a href="{{route('home') }}" class="waves-effect active"><i class="md md-home"></i><span> POS </span></a>
+                                <a href="{{ route('pos') }}"><i class="md md-home"></i><span> POS </span></a>
                             </li>
 
                             <li class="has_sub ">
@@ -242,6 +245,7 @@
                                 <ul class="list-unstyled">
                                     <li><a href="{{route('add.product') }}">Add Product</a></li>
                                     <li><a href="{{route('all-product')}}">All Product</a></li>
+                                    <li><a href="{{route('import.product')}}">Import Product</a></li>
                                     
                                 </ul>
                             </li>
@@ -261,7 +265,15 @@
                                 <a href="#" class="waves-effect"><i class="md md-palette"></i> <span> Attendence </span> <span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="{{route('take.attendence')}}">Today Attendence</a></li>
-                                    <li><a href="all.attendence">All Attendence</a></li>
+                                    <li><a href="{{route('all.attendence')}}">All Attendence</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="has_sub">
+                                <a href="#" class="waves-effect"><i class="md md-palette"></i> <span> Orders </span> <span class="pull-right"><i class="md md-add"></i></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="{{route('pending.orders')}}">Pending Orders</a></li>
+                                    <li><a href="{{route('success.orders')}}">Success Orders</a></li>
                                 </ul>
                             </li>
 
@@ -271,6 +283,9 @@
                                     <li><a href="#">All Sells</a></li>
                                     <li><a href="#">New Sells</a></li>
                                 </ul>
+                            </li>
+                            <li>
+                                <a href="{{ route('setting') }}" class="waves-effect active"><i class="md md-home"></i><span> Setting </span></a>
                             </li>
                         <div class="clearfix"></div>
                     </div>

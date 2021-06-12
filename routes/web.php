@@ -83,6 +83,12 @@ Route::get('/product-edit/{product_id}', 'ProductController@Edit')->name('produc
 Route::post('/update-product/{product_id}', 'ProductController@Update')->name('product-update');
 
 
+//Excel import Ecport
+Route::get('/import-product', 'ProductController@ImportProduct')->name('import.product');
+Route::get('\export', 'ProductController@export')->name('export');
+Route::post('\import', 'ProductController@import')->name('import');
+
+
 //Expnese----------------------
 Route::get('/add-expense', 'ExpenseController@index')->name('add.expense');
 Route::post('/insert-expense', 'ExpenseController@store')->name('insert-expense');
@@ -109,3 +115,32 @@ Route::get('/today-expense-delete/{id}', 'ExpenseController@Delete')->name('toda
 
 Route::get('/take-attendence', 'AttendenceController@index')->name('take.attendence');
 Route::post('/insert-attendence', 'AttendenceController@store')->name('insert-attendence');
+Route::get('/all-attendence', 'AttendenceController@allAttendence')->name('all.attendence');
+Route::get('/edit-attendence/{edit_date}', 'AttendenceController@edit');
+Route::get('/view-attendence/{edit_date}', 'AttendenceController@view');
+Route::post('/update-attendence', 'AttendenceController@Update');
+Route::get('/delete-attendence/{edit_date}', 'AttendenceController@delete');
+
+
+//Setting
+
+
+Route::get('/Website-setting', 'SettingController@index')->name('setting');
+Route::post('/update-website/{id}', 'SettingController@Update')->name('website-update');
+
+
+//Pos 
+Route::get('/pos', 'PosController@index')->name('pos');
+Route::get('/pending-orders', 'PosController@PendingOrders')->name('pending.orders');
+Route::get('/success-orders', 'PosController@SuccessOrders')->name('success.orders');
+Route::get('/view-order-status/{id}', 'PosController@ViewOrders');
+Route::get('/pos-done/{id}', 'PosController@PosoDone');
+
+
+//Cart
+Route::post('/add-cart', 'CartController@Index')->name('add-cart');
+Route::post('/cart-update/{rowId}', 'CartController@Update')->name('update-cart');
+Route::get('/cart-delete/{rowId}', 'CartController@Delete');
+Route::post('/invoice', 'CartController@Invoice');
+Route::post('/final-invoice', 'CartController@FinalInvoice');
+
